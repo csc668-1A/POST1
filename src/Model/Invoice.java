@@ -15,7 +15,7 @@ import java.util.List;
  * @author ninjung
  */
 public class Invoice {
-    private static final String FILENAME = "/Users/ninjung/Desktop/transaction.txt";
+    private static final String FILENAME = "./transaction.txt";
     private String customerName;
     private List<SaledItem> saledItems =  new ArrayList<SaledItem>();
     private Date saledTime;
