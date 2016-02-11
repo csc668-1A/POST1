@@ -11,9 +11,45 @@ package Model;
  */
 public class CashPayment implements iPayment{
 
+    private double amount;
+    private double cashRecv;
+    private double cashChange;
+    
     @Override
-    public void pay() {
+    public double amount() {
+        return amount;
+    }
+
+    @Override
+    public void payCash(double paymentAmount, double saleAmount) {
+        cashChange = paymentAmount - saleAmount;
+        amount = saleAmount;
+        cashRecv = paymentAmount;
+    }
+    
+    @Override
+    public void payCredit(double saleAmount, String cardNo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+    public double cashRecieve(){
+        return cashRecv;
+    }
+
+    @Override
+    public double cashReturned() {
+        return cashChange;
+    }
+
+    @Override
+    public String cardNo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isCash() {
+        return true;
+    }
+   
 }

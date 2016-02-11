@@ -15,10 +15,13 @@ public class ProductItem {
     private double price;
 
     public ProductItem(int upc, String description, double price) {
-    this.upc = upc;
-    this.description = description;
-    this.price = price;
-}
+        this.upc = upc;
+        this.description = description;
+        this.price = price;
+    }
+    public ProductItem() {
+        
+    }
     /**
      * @return the upc
      */

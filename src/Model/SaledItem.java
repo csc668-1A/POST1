@@ -11,7 +11,7 @@ package Model;
  */
 public class SaledItem {
     private ProductItem item;
-    int quantity;
+    private int quantity;
     //double saledItemAmount;
     
     public SaledItem(ProductItem item,int quantity){
@@ -22,7 +22,7 @@ public class SaledItem {
     
     public double getsaleItemAmount(){
       double amount ;
-      amount = getItem().getPrice()*quantity;
+      amount = getItem().getPrice()*getQuantity();
       return amount;
     }
 
@@ -38,6 +38,20 @@ public class SaledItem {
      */
     private void setItem(ProductItem item) {
         this.item = item;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
     
     

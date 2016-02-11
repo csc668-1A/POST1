@@ -10,5 +10,11 @@ package Model;
  * @author ninjung
  */
 public interface iPayment {
-    public void pay();
+    public double amount();
+    public double cashReturned();
+    public double cashRecieve();
+    public String cardNo();
+    public boolean isCash();
+    public void payCash(double paymentAmount, double saleAmount);
+    public void payCredit(double saleAmount, String cardNo);
 }

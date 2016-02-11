@@ -14,9 +14,17 @@ import Model.ProductCatalog;
 public class Store {
     public final static String USERLOGIN = "Jason";
     public final static String PASSLOGIN = "helloworld";
+    public final static String STORENAME = "SFSU Store";
+    public final static String STOREADDRESS = "1600 Holloway Ave, San Francisco";
+    private String sname;
+    private String saddress;
     String managerUsername;
     String managerPassword;
     
+    public Store(){
+        this.sname = STORENAME;
+        this.saddress = STOREADDRESS;
+    }
     public Boolean verifyLogin(String username, String password){
         if((username.equals(USERLOGIN)) && username.equals(USERLOGIN)){
             return true;
@@ -28,5 +36,33 @@ public class Store {
     
     public ProductCatalog getProductCatalog(){
         return ProductCatalog.getInstance();
+    }
+
+    /**
+     * @return the sname
+     */
+    public String getSname() {
+        return sname;
+    }
+
+    /**
+     * @param sname the sname to set
+     */
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
+
+    /**
+     * @return the saddress
+     */
+    public String getSaddress() {
+        return saddress;
+    }
+
+    /**
+     * @param saddress the saddress to set
+     */
+    public void setSaddress(String saddress) {
+        this.saddress = saddress;
     }
 }

@@ -26,8 +26,9 @@ public class ProductCatalog {
       return catalog;
    }
    
-   private final List<ProductItem> items =  new ArrayList<ProductItem>();
+   private static List<ProductItem> items =  new ArrayList<ProductItem>();
     
+   
    public void addItem(ProductItem item){
         items.add(item);
     }
@@ -45,5 +46,16 @@ public class ProductCatalog {
                 System.out.println("UPC: "+item.getUpc()+ ", Description: "+ item.getDescription()
                                 +", Price: "+item.getPrice());
         }
+    }
+    
+    public ProductItem getItemByUPC(int upc){
+        ProductItem productItem = new ProductItem();
+        for(ProductItem item: items){
+                if(upc == item.getUpc()){
+                    productItem = item;
+                    break;
+                }
+        }
+        return productItem;
     }
 }

@@ -5,6 +5,7 @@
  */
 package Actor;
 
+import Model.ProductCatalog;
 import Model.ProductItem;
 import Model.SaledItem;
 import post.Sale;
@@ -14,25 +15,45 @@ import post.Sale;
  * @author ninjung
  */
 public class Customer {
-    String name;
-    
+    private String name;
+    Sale sale;
     public Customer(String name){
         this.name = name;
     }
     
-    public Sale saleBuilder(){
-        Sale sale = new Sale();
-        ProductItem item = new ProductItem(1000,"pen",5.50);
+    public Sale saleBuilder(ProductCatalog catalog){
+        sale = new Sale(getName()); // insert customer name
+        
+        /* Customer Enter Item the System*/
+        ProductItem item = catalog.getItemByUPC(1004);
         SaledItem saledItem = new SaledItem(item,2);
         sale.enterItem(saledItem);
-        ProductItem item2 = new ProductItem(1001,"pencil",3.50);
-        SaledItem saledItem2 = new SaledItem(item2,3);
+        ProductItem item2 = catalog.getItemByUPC(1001);
+        SaledItem saledItem2 = new SaledItem(item2,2);
         sale.enterItem(saledItem2);
-        ProductItem item3 = new ProductItem(1002,"rubber",4.00);
-        SaledItem saledItem3 = new SaledItem(item3,4);
+        ProductItem item3 = catalog.getItemByUPC(1005);
+        SaledItem saledItem3 = new SaledItem(item3,1);
         sale.enterItem(saledItem3);
         
         return sale;
+    }
+    
+    public void MakePurchase(String paymentType, double paymentAmount, String cardNo){
+        sale.makePayment(paymentType,paymentAmount,sale.getAmount(),cardNo);
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

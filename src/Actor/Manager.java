@@ -31,13 +31,15 @@ public class Manager {
     public ProductCatalog manageCatalog(){
         store = new Store();
         ProductCatalog catalog = store.getProductCatalog();
-        ProductItem item = new ProductItem(1001, "pencil", 5.50);
+        ProductItem item = new ProductItem(1001, "Pencil", 5.50);
         catalog.addItem(item);
-        item = new ProductItem(1002, "pen", 4.50);
+        item = new ProductItem(1002, "Pen", 4.50);
         catalog.addItem(item);
         item = new ProductItem(1003, "Rubber", 3.00);
         catalog.addItem(item);
         item = new ProductItem(1004, "Notebook", 4.00);
+        catalog.addItem(item);
+        item = new ProductItem(1005, "Paper", 1.00);
         catalog.addItem(item);
         System.out.println("-------Display Catalog-------");
         catalog.showitem();
