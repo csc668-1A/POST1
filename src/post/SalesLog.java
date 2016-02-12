@@ -18,7 +18,7 @@ public class SalesLog {
     
     public void addNewSale(Sale sale, Store store) throws IOException{
         Invoice invoice = new Invoice(sale.getCustName(), sale.getSaledItems(), sale.getSaledtime(), 
-                sale.getPayment().isCash(), sale.getPayment().amount(), sale.getPayment().cashRecieve(), 
+                sale.getPayment().isCash(), sale.getPayment().amount(), sale.getPayment().cashReceived(), 
                 sale.getPayment().cashReturned(), sale.getPayment().cardNo());
         invoice.run();//write transaction.txt
         
@@ -34,7 +34,7 @@ public class SalesLog {
         System.out.println("----");
         System.out.println("Total $"+sale.getPayment().amount());
         if(sale.getPayment().isCash()){
-            System.out.println("Amount Tendered: "+sale.getPayment().cashRecieve());
+            System.out.println("Amount Tendered: "+sale.getPayment().cashReceived());
             System.out.println("Amount Returned: "+sale.getPayment().cashReturned());
         }else{
             System.out.println("Paid by Credit Card "+sale.getPayment().cardNo());

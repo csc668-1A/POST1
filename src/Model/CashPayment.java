@@ -6,8 +6,7 @@
 package Model;
 
 /**
- *
- * @author ninjung
+ * Model class for cash payment. Implements iPayment interface.
  */
 public class CashPayment implements iPayment{
 
@@ -33,7 +32,7 @@ public class CashPayment implements iPayment{
     }
     
     @Override
-    public double cashRecieve(){
+    public double cashReceived(){
         return cashRecv;
     }
 
