@@ -15,7 +15,6 @@ import java.util.List;
  * @author ninjung
  */
 public class Invoice {
-    private static final String FILENAME = "./transaction.txt";
     private String customerName;
     private List<SaledItem> saledItems =  new ArrayList<SaledItem>();
     private Date saledTime;
@@ -41,24 +40,26 @@ public class Invoice {
         //Writes values to a .txt file on the desktop
         
         //Change directory for your computer
-        File file = new File(FILENAME);
+        File file = new File(iFileDirectory.TRANSACTIONFILEDIR);
         file.getParentFile().mkdirs();
 
-        PrintWriter printWriter = new PrintWriter(file);
-        printWriter.println("IDENTIFYING INFORMATION:"+ customerName);
-        
-        for(SaledItem item:saledItems){
-            printWriter.println("ITEM: "+item.getItem().getUpc()+" "+item.getQuantity());
+        try (PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(file, true)))) {
+            printWriter.println("IDENTIFYING INFORMATION:"+ customerName);
+            
+            for(SaledItem item:saledItems){
+                printWriter.println("ITEM: "+item.getItem().getUpc()+" "+item.getQuantity()+"\n");
+            }
+            if (isCash == true){
+                printWriter.println("PAYMENT: <CASH/CHECK $"+amount+">");
+            }
+            else {
+                printWriter.println("PAYMENT: <CREDIT " + amount+">"+amount+" is credit card#"+cardNo);
+            }
+            printWriter.println("\n");
+        }catch (IOException e) {
+            System.err.println("IOException: " + e.getMessage());
         }
-        if (isCash == true){
-            printWriter.println("PAYMENT: <CASH/CHECK $"+amount+">");
-        }
-        else {
-            printWriter.println("PAYMENT: <CREDIT " + amount+">"+amount+" is credit card#"+cardNo);
-        }
-        printWriter.println("\n");
-        printWriter.close();
-        System.out.println("Write File Completed");
+        System.out.println("Write Transaction.txt File Completed");
         
     }
     

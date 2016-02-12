@@ -7,72 +7,127 @@ package Actor;
 
 import Model.ProductCatalog;
 import Model.ProductItem;
+import Model.iFileDirectory;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import post.Store;
 
 /**
- * Actor class for a manager of a store. Manager can open store with Openstore() and manage a product catalog with manageCatalog().
+ *
+ * @author ninjung
  */
 public class Manager {
     private String username;
     private String password;
     Store store = new Store();
-    
-    /**
-     * Constructor method. Creates manager with name and password passed as parameters in the function call.
-     * @param username Name of new manager.
-     * @param password Password of new manager.
-     */
     public Manager(String username, String password){
         this.username = username;
         this.password = password;
     }
     
-    /**
-     * Creates/opens a store for a manager.
-     * @return Boolean verifying login of manager. True on success; false on failure.
-     */
     public boolean Openstore(){
         store = new Store();
         boolean isLogin = store.verifyLogin(this.getUsername(), this.getPassword());
         return isLogin;
     }
     
-    /**
-     * Allows manager to add and retrieve the product catalog of a store.
-     * @return The product catalog of a store.
-     */
-    public ProductCatalog manageCatalog(){
+    public ProductCatalog manageCatalog() throws FileNotFoundException{
         store = new Store();
-        ProductCatalog catalog = store.getProductCatalog();
-        ProductItem item = new ProductItem(1001, "Pencil", 5.50);
-        catalog.addItem(item);
-        item = new ProductItem(1002, "Pen", 4.50);
-        catalog.addItem(item);
-        item = new ProductItem(1003, "Rubber", 3.00);
-        catalog.addItem(item);
-        item = new ProductItem(1004, "Notebook", 4.00);
-        catalog.addItem(item);
-        item = new ProductItem(1005, "Paper", 1.00);
-        catalog.addItem(item);
-        System.out.println("-------Display Catalog-------");
-        catalog.showitem();
+        ProductCatalog catalog = store.getProductCatalog();//get Store Catalog
         
-        //System.out.println("-------Display Catalog-------");
-        //catalog.deleteItem(1004);
-        //catalog.showitem();
+        /*Enter ProductItems to the Catalog*/
+        List<ProductItem> addedItems =  new ArrayList<ProductItem>();
+        ProductItem addItem = new ProductItem(1001, "Pencil", 5.50);
+        addedItems.add(addItem);
+        addItem = new ProductItem(1002, "Pen", 4.50);
+        addedItems.add(addItem);
+        addItem = new ProductItem(1003, "Rubber", 3.00);
+        addedItems.add(addItem);
+        addItem = new ProductItem(1004, "Notebook", 4.00);
+        addedItems.add(addItem);
+        addItem = new ProductItem(1005, "Paper", 1.00);
+        addedItems.add(addItem);
+        catalog.productWriter(addedItems); //write productItems into products.txt
+        
+        /*read products.txt file*/
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new FileReader(iFileDirectory.PRODUCTSFILEDIR));//retrieve file from directory
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String tempString;
+        catalog.deleteAllItem();
+        /*read productItems from product.txt file and add to items to store catalog*/
+        try {
+            while  ((tempString = in.readLine()) != null){
+                ProductItem item = new ProductItem(Integer.parseInt((tempString.substring(0, 4)))
+                        , tempString.substring(9, 29), Float.parseFloat(tempString.substring(34)));
+                catalog.addItem(item);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        System.out.println("-------Display Catalog-------");
+        catalog.showitem();//display productItems from Store Catalog
+        return catalog;
+    }
+    public ProductCatalog addNewItemtoCatalog() throws FileNotFoundException{
+        store = new Store();
+        ProductCatalog catalog = store.getProductCatalog();//get Store Catalog
+        
+        /*Enter ProductItems to the Catalog*/
+        List<ProductItem> addedItems =  new ArrayList<ProductItem>();
+        ProductItem addItem = new ProductItem(1006, "Folder", 3.50);
+        addedItems.add(addItem);
+        addItem = new ProductItem(1007, "Textbook", 25.00);
+        addedItems.add(addItem);
+        catalog.productAppending(addedItems); //write new productItems into products.txt
+        
+        /*read products.txt file*/
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new FileReader(iFileDirectory.PRODUCTSFILEDIR));//retrieve file from directory
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String tempString;
+        catalog.deleteAllItem();
+        /*read productItems from product.txt file and add to items to store catalog*/
+        try {
+            while  ((tempString = in.readLine()) != null){
+                ProductItem item = new ProductItem(Integer.parseInt((tempString.substring(0, 4)))
+                        , tempString.substring(9, 29), Float.parseFloat(tempString.substring(34)));
+                catalog.addItem(item);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        System.out.println("-------Display Catalog-------");
+        catalog.showitem();//display productItems from Store Catalog
         return catalog;
     }
     /**
-     * Getter method; retrieves username of a manager.
-     * @return The username of a manager.
+     * @return the username
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Getter method; retrieves password of a manager.
-     * @return The password of a manager.
+     * @return the password
      */
     public String getPassword() {
         return password;

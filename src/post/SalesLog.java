@@ -6,9 +6,9 @@
 package post;
 
 import Model.Invoice;
-import Model.ProductCatalog;
 import Model.SaledItem;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  *
@@ -41,4 +41,11 @@ public class SalesLog {
         }
     }
     
+    public void printSalesLog(Date time){
+        
+    }
+    
+    public void printRecord(String Custname){
+        
+    }
 }

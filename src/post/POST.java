@@ -31,7 +31,7 @@ public class POST {
             System.out.println("Store is opened");// valid username and password
             
             ProductCatalog catalog=manager.manageCatalog(); //Manage Product Catalog
-        
+            manager.addNewItemtoCatalog();
             /*Customer make purchase*/
             Customer customer = new Customer("Robert Alameda");
             Sale sale = customer.saleBuilder(catalog);
@@ -40,8 +40,8 @@ public class POST {
             System.out.println("Total Amount: "+sale.getAmount());
             
             /*Customer make payment*/
-            //customer.MakePurchase("cash", 40.00, null); // Cash Payment
-            customer.MakePurchase("credit", sale.getAmount(),"4400 5620 4134 1820"); // Credit Payment
+            customer.MakePurchase("cash", 100.00, null); // Cash Payment
+            //customer.MakePurchase("credit", sale.getAmount(),"4400 5620 4134 1820"); // Credit Payment
             
             /*Record Sale and Print Invoice*/
             SalesLog log = new SalesLog();

@@ -44,7 +44,7 @@ public class Sale {
     public void showItem(){
         for(SaledItem saleditem:getSaledItems()){
             System.out.println("UPC: "+saleditem.getItem().getUpc()+ ", Description: "+ saleditem.getItem().getDescription()
-                                +", Price: "+saleditem.getItem().getPrice());
+                                +", Price: "+saleditem.getItem().getPrice()+", Quantity: "+saleditem.getQuantity());
         }
     }
     
