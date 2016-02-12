@@ -6,20 +6,27 @@
 package Model;
 
 /**
- *
- * @author ninjung
+ * Model class for a sale item. Class can create items and
+ * provide getter/setter methods for its data fields.
  */
 public class SaledItem {
     private ProductItem item;
     private int quantity;
-    //double saledItemAmount;
     
+    /**
+     * Constructor method; creates a SaledItem object from passed parameters.
+     * @param item Product item to add to a sale
+     * @param quantity Number of item to add to a sale
+     */
     public SaledItem(ProductItem item,int quantity){
         setItem(item);
         this.quantity = quantity;
     }
 
-    
+    /**
+     * Retrieves price total for a quantity of an item in a sale.
+     * @return Price total for a quantity of a sale item
+     */
     public double getsaleItemAmount(){
       double amount ;
       amount = getItem().getPrice()*getQuantity();
@@ -27,28 +34,32 @@ public class SaledItem {
     }
 
     /**
-     * @return the item
+     * Retrieves product of a sale item.
+     * @return Product of sale item
      */
     public ProductItem getItem() {
         return item;
     }
 
     /**
-     * @param item the item to set
+     * Set product of a sale item to new product passed as a parameter. 
+     * @param item New product of sale item
      */
     private void setItem(ProductItem item) {
         this.item = item;
     }
 
     /**
-     * @return the quantity
+     * Retrieves quantity of a sale item.
+     * @return Quantity of sale item
      */
     public int getQuantity() {
         return quantity;
     }
 
     /**
-     * @param quantity the quantity to set
+     * Sets quantity of a sale item to new quantity passed as a parameter.
+     * @param quantity New quantity of sale item
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;

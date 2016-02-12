@@ -6,59 +6,75 @@
 package Model;
 
 /**
- *
- * @author ninjung
+ * Model class for a product item. Class can create products and
+ * provide getter/setter methods for its data fields.
  */
 public class ProductItem {
     private int upc;
     private String description;
     private double price;
 
+    /**
+     * Constructor method; creates a ProductItem object from passed parameters.
+     * @param upc UPC of new product
+     * @param description Description of new product
+     * @param price Price of new product
+     */
     public ProductItem(int upc, String description, double price) {
         this.upc = upc;
         this.description = description;
         this.price = price;
     }
+    
+    /**
+     * Default constructor method;
+     */
     public ProductItem() {
         
     }
     /**
-     * @return the upc
+     * Retrieves the UPC of a product.
+     * @return UPC of product
      */
     public int getUpc() {
         return upc;
     }
 
     /**
-     * @param upc the upc to set
+     * Sets a product's UPC to new UPC passed as a parameter.
+     * @param upc New UPC for product
      */
     public void setUpc(int upc) {
         this.upc = upc;
     }
 
     /**
-     * @return the description
+     * Retrieves the description of a product.
+     * @return Description of product
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * @param description the description to set
+     * Sets a product's description to new description passed as a parameter.
+     * @param description New description for product
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * @return the price
+     * Retrieves the price of a product.
+     * @return Price of product
      */
     public double getPrice() {
         return price;
     }
 
     /**
-     * @param price the price to set
+     * Sets a product's price to a new price passed as a parameter.
+     * @param price New price for product
      */
     public void setPrice(double price) {
         this.price = price;

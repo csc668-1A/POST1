@@ -11,8 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author ninjung
+ * Model class for invoice of a sale. Class can create and write invoices to a transaction log.
  */
 public class Invoice {
     private String customerName;
@@ -24,6 +23,17 @@ public class Invoice {
     private double returned;
     private String cardNo;
     
+    /**
+     * Constructor method; creates an invoice from details passed as parameters.
+     * @param name Name of the customer
+     * @param saledItems Items sold to the customer
+     * @param saledTime Time when transaction occurred
+     * @param isCash Boolean value determining if cash payment was used
+     * @param amount Amount paid by customer
+     * @param tendered Cash amount received from customer
+     * @param returned Cash amount returned to customer
+     * @param cardNo 16-digit number of credit card used in transaction
+     */
     public  Invoice(String name, List<SaledItem> saledItems, Date saledTime, Boolean isCash, double amount,
             double tendered, double returned, String cardNo){
         this.customerName = name;
@@ -36,10 +46,12 @@ public class Invoice {
         this.cardNo = cardNo;
     }
     
+    /**
+     * Writes invoices to a transaction log located at the directory specified by iFileDirectory.
+     * @throws IOException
+     */
     public void run() throws IOException {
-        //Writes values to a .txt file on the desktop
-        
-        //Change directory for your computer
+    	//Change directory for your computer
         File file = new File(iFileDirectory.TRANSACTIONFILEDIR);
         file.getParentFile().mkdirs();
 
@@ -63,6 +75,9 @@ public class Invoice {
         
     }
     
+    /**
+     * Prints message to console confirming logging of invoice to transaction log.
+     */
     public void print(){
         System.out.println("------Invoice Printed by Program-------");
         System.out.println("");

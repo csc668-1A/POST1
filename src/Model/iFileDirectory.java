@@ -6,8 +6,7 @@
 package Model;
 
 /**
- *
- * @author ninjung
+ * Interface containing directories to files used for storing the product catalog and transaction log.
  */
 public interface iFileDirectory {
      public static final String PRODUCTSFILEDIR = "src/Files/products.txt";
