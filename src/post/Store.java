@@ -8,8 +8,7 @@ package post;
 import Model.ProductCatalog;
 
 /**
- *
- * @author ninjung
+ * Class for store which utilizes the POST. Class can verify manager logins and manage store info.
  */
 public class Store {
     public final static String USERLOGIN = "Jason";
@@ -21,10 +20,20 @@ public class Store {
     String managerUsername;
     String managerPassword;
     
+    /**
+     * Constructor method; creates instance of Store object.
+     */
     public Store(){
         this.sname = STORENAME;
         this.saddress = STOREADDRESS;
     }
+    
+    /**
+     * Verifies username and password of a store manager.
+     * @param username Username of the manager
+     * @param password Password of the manager
+     * @return Boolean value for verification; "true" on success, "false" on failure
+     */
     public Boolean verifyLogin(String username, String password){
         if((username.equals(USERLOGIN)) && username.equals(USERLOGIN)){
             return true;
@@ -34,33 +43,41 @@ public class Store {
         }
     }
     
+    /**
+     * Retrieves product catalog of the store.
+     * @return Product catalog of the store
+     */
     public ProductCatalog getProductCatalog(){
         return ProductCatalog.getInstance();
     }
 
     /**
-     * @return the sname
+     * Retrieves the name of the store.
+     * @return Store name
      */
     public String getSname() {
         return sname;
     }
 
     /**
-     * @param sname the sname to set
+     * Sets the name of the store to name passed as a parameter.
+     * @param sname New store name
      */
     public void setSname(String sname) {
         this.sname = sname;
     }
 
     /**
-     * @return the saddress
+     * Retrieves the street address of the store.
+     * @return Store street address
      */
     public String getSaddress() {
         return saddress;
     }
 
     /**
-     * @param saddress the saddress to set
+     * Sets the street address of the store to new address passed as a parameter.
+     * @param saddress New store address
      */
     public void setSaddress(String saddress) {
         this.saddress = saddress;

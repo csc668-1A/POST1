@@ -11,13 +11,15 @@ import Model.ProductCatalog;
 import java.io.IOException;
 
 /**
- *
- * @author ninjung
+ * Class for a point of sale terminal (POST). Current POST main method goes through
+ * opening a store, creating a product catalog, building sales, and running payments.
  */
 public class POST {
 
     /**
-     * @param args the command line arguments
+     * Main method; currently goes through opening a store, creating a product catalog,
+     * building sales, and running payments.
+     * @param args Command line arguments (not utilized)
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
@@ -47,7 +49,7 @@ public class POST {
             SalesLog log = new SalesLog();
             log.addNewSale(sale, store);
         }else{
-            System.out.println("Invalid Username or Password"); //incorrent username or password
+            System.out.println("Invalid Username or Password"); //incorrect username or password
         }
     }
     
