@@ -19,8 +19,8 @@ import java.util.logging.Logger;
 import post.Store;
 
 /**
- *
- * @author ninjung
+ * Actor class for a manager of a store. A customer can open a store and both manage and add
+ * items to a store's product catalog. Class includes getter methods for username and password.
  */
 public class Manager {
     private String username;
@@ -31,12 +31,22 @@ public class Manager {
         this.password = password;
     }
     
+    /**
+     * Opens a new store upon verifying current manager's username and password.
+     * @return Boolean value for manager's login; "true" on success, "false" on failure
+     */
     public boolean Openstore(){
         store = new Store();
         boolean isLogin = store.verifyLogin(this.getUsername(), this.getPassword());
         return isLogin;
     }
     
+    /**
+     * Allows a manager to manage a store's product catalog. In its current state, items are added
+     * via methods and file I/O.
+     * @return Modified product catalog for a store
+     * @throws FileNotFoundException
+     */
     public ProductCatalog manageCatalog() throws FileNotFoundException{
         store = new Store();
         ProductCatalog catalog = store.getProductCatalog();//get Store Catalog
@@ -81,6 +91,13 @@ public class Manager {
         catalog.showitem();//display productItems from Store Catalog
         return catalog;
     }
+    
+    /**
+     * Allows items to be added to a store's product catalog. In its current state,
+     * items are added via methods and file I/O.
+     * @return Modified product catalog for a store
+     * @throws FileNotFoundException
+     */
     public ProductCatalog addNewItemtoCatalog() throws FileNotFoundException{
         store = new Store();
         ProductCatalog catalog = store.getProductCatalog();//get Store Catalog
@@ -120,14 +137,16 @@ public class Manager {
         return catalog;
     }
     /**
-     * @return the username
+     * Retrieves current manager's username.
+     * @return Username of the current manager
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * @return the password
+     * Retrieves current manager's password.
+     * @return Password of the current manager
      */
     public String getPassword() {
         return password;

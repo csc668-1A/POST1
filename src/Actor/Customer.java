@@ -11,8 +11,8 @@ import Model.SaledItem;
 import post.Sale;
 
 /**
- *
- * @author ninjung
+ * Actor class for a customer of a store. A customer can create a sale and
+ * purchase a sale. Class includes getter/setter methods for a customer's name.
  */
 public class Customer {
     private String name;
@@ -21,6 +21,12 @@ public class Customer {
         this.name = name;
     }
     
+    /**
+     * Creates a sale for the current customer.
+     * Items can be added by checking their UPCs with a store's product catalog.
+     * @param catalog Product catalog for a store
+     * @return Sale object containing items to be purchased by the customer
+     */
     public Sale saleBuilder(ProductCatalog catalog){
         sale = new Sale(getName()); // insert customer name
         int upc= 0;
@@ -56,19 +62,27 @@ public class Customer {
         return sale;
     }
     
+    /**
+     * Allows current customer to purchase items in the current sale.
+     * @param paymentType String containing payment type; "cash" for cash transaction, "card" for credit card transaction
+     * @param paymentAmount Amount to be paid; usually same amount as balance on current sale
+     * @param cardNo String containing a 16-digit credit card number
+     */
     public void MakePurchase(String paymentType, double paymentAmount, String cardNo){
         sale.makePayment(paymentType,paymentAmount,sale.getAmount(),cardNo);
     }
 
     /**
-     * @return the name
+     * Retrieves current customer's name.
+     * @return Name of the current customer
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name the name to set
+     * Sets current customer's name to the name passed as a parameter in the method call.
+     * @param name New name for the current customer
      */
     public void setName(String name) {
         this.name = name;
