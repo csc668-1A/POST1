@@ -7,7 +7,7 @@ package post;
 
 import Actor.Customer;
 import Actor.Manager;
-
+import java.rmi.*;
 /**
  *
  * @author ninjung
@@ -17,13 +17,16 @@ public class POST {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public POST() {
         // TODO code application logic here
         
         /*Open Store*/
         Manager manager = new Manager("Jason","helloworld");
-        Store store = new Store();
+        Store store;
         
+        try{
+            store = new Store();
+       
         /*Manager login to open the store*/
         if(store.verifyLogin(manager.getUsername(), manager.getPassword()).equals(true)){
             System.out.println("Store is opened");
@@ -38,6 +41,9 @@ public class POST {
             sale.showItem();
         }else{
             System.out.println("Invalid Username or Password");
+        }
+         } catch (RemoteException e){
+            
         }
     }
     

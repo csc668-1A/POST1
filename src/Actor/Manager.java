@@ -8,28 +8,36 @@ package Actor;
 import Model.ProductCatalog;
 import Model.ProductItem;
 import post.Store;
-
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.*;
+import post.iRMI;
 /**
  *
  * @author ninjung
  */
-public class Manager {
+public class Manager{
     private String username;
     private String password;
-    Store store = new Store();
+    Store store;
     public Manager(String username, String password){
         this.username = username;
         this.password = password;
     }
     
     public boolean Openstore(){
+        try{
         store = new Store();
+        }catch(RemoteException e){
+        }
         boolean isLogin = store.verifyLogin(this.getUsername(), this.getPassword());
         return isLogin;
     }
     
     public ProductCatalog manageCatalog(){
-        store = new Store();
+        try{
+            store = new Store();
+        }catch(RemoteException e){
+        }
         ProductCatalog catalog = store.getProductCatalog();
         ProductItem item = new ProductItem(1001, "pencil", 5.50);
         catalog.addItem(item);
@@ -46,6 +54,7 @@ public class Manager {
         //catalog.deleteItem(1004);
         //catalog.showitem();
         return catalog;
+
     }
     /**
      * @return the username
