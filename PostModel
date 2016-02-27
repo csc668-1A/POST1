@@ -2,8 +2,17 @@ package csc668assignment1;
 
 
 public class PostModel {
+    private int totalValue;
+    private int paymentAmount;
     
     //Method for writing to transaction.txt goes here
     //and adding UPC, quantity to GUI list
+    
+    public void getTotal(int addValue){
+        totalValue += addValue;
+    }
+    public int getTotalValue(){
+        return totalValue;
+    }
     
 }
