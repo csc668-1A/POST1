@@ -1,0 +1,9 @@
+package csc668assignment1;
+
+
+public class PostModel {
+    
+    //Method for writing to transaction.txt goes here
+    //and adding UPC, quantity to GUI list
+    
+}
