@@ -39,9 +39,8 @@ public class PostController {
                                 
                                 
                                 
-				theModel.addTwoNumbers(firstNumber, secondNumber);
-				
-				theView.setCalcSolution(theModel.getCalculationValue());
+				//theModel.addTwoNumbers(firstNumber, secondNumber);
+				//theView.setCalcSolution(theModel.getCalculationValue());
 			
 			}
 
@@ -49,7 +48,7 @@ public class PostController {
 				
 				System.out.println(ex);
 				
-				theView.displayErrorMessage("You Need to Enter 2 Integers");
+				//theView.displayErrorMessage("You Need to Enter 2 Integers");
 			}
 		}
                 
@@ -61,8 +60,8 @@ public class PostController {
 			
 				paymentAmount = theView.getPaymentAmount();
                                 
-				theModel.addTwoNumbers(firstNumber, secondNumber);
-				theView.setCalcSolution(theModel.getCalculationValue());
+				//theModel.addTwoNumbers(firstNumber, secondNumber);
+				//theView.setCalcSolution(theModel.getCalculationValue());
 			
 			}
 
@@ -70,7 +69,7 @@ public class PostController {
 				
 				System.out.println(ex);
 				
-				theView.displayErrorMessage("You Need to Enter 2 Integers");
+				//theView.displayErrorMessage("You Need to Enter 2 Integers");
 				
 			}
 			
